@@ -1,0 +1,238 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://sprites/HUD/game_window.png" type="Texture" id=1]
+[ext_resource path="res://font/PixelOperator.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://sprites/blocks_show.png" type="Texture" id=3]
+[ext_resource path="res://scripts/HUD.gd" type="Script" id=4]
+[ext_resource path="res://sprites/HUD/B_normal.png" type="Texture" id=5]
+[ext_resource path="res://sprites/HUD/B_pressed.png" type="Texture" id=6]
+[ext_resource path="res://sprites/HUD/smallB_pressed.png" type="Texture" id=7]
+[ext_resource path="res://sprites/HUD/smallB_normal.png" type="Texture" id=8]
+[ext_resource path="res://sprites/HUD/transition_w.png" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("trans:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("trans:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="HUD" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="window" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="info" type="Node2D" parent="."]
+
+[node name="piece_preview" type="Sprite" parent="info"]
+position = Vector2( 220, 280 )
+texture = ExtResource( 3 )
+centered = false
+vframes = 2
+hframes = 4
+
+[node name="lb_score" type="Label" parent="info"]
+margin_left = 218.0
+margin_top = 173.0
+margin_right = 274.0
+margin_bottom = 205.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttons_m" type="Node2D" parent="."]
+
+[node name="start_B" type="TextureButton" parent="buttons_m"]
+pause_mode = 2
+margin_left = 40.0
+margin_top = 505.0
+margin_right = 88.0
+margin_bottom = 557.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="info" type="Label" parent="buttons_m/start_B"]
+margin_left = -16.0
+margin_top = 53.0
+margin_right = 65.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 2 )
+text = "Start / Pause"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="mute_B" type="TextureButton" parent="buttons_m"]
+margin_left = 115.0
+margin_top = 600.0
+margin_right = 135.0
+margin_bottom = 624.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="info" type="Label" parent="buttons_m/mute_B"]
+margin_left = 24.0
+margin_top = 3.0
+margin_right = 84.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 2 )
+text = "Sound_On"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="rotate_B" type="TextureButton" parent="buttons_m"]
+margin_left = 200.0
+margin_top = 505.0
+margin_right = 248.0
+margin_bottom = 557.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="buttons_m/rotate_B"]
+margin_left = 4.0
+margin_top = 53.0
+margin_right = 44.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 2 )
+text = "Rotate"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="right_B" type="TextureButton" parent="buttons_m"]
+margin_left = 300.0
+margin_top = 520.0
+margin_right = 320.0
+margin_bottom = 544.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="left_B" type="TextureButton" parent="buttons_m"]
+margin_left = 260.0
+margin_top = 520.0
+margin_right = 280.0
+margin_bottom = 544.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="down_B" type="TextureButton" parent="buttons_m"]
+margin_left = 280.0
+margin_top = 540.0
+margin_right = 300.0
+margin_bottom = 564.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="text" type="Label" parent="."]
+margin_left = 93.0
+margin_top = 205.0
+margin_right = 209.0
+margin_bottom = 411.0
+custom_fonts/font = SubResource( 5 )
+text = "Welcome!
+Use key arrows to
+move and speed Up
+the fall.
+Press space_bar
+to rotate the
+piece.
+Press the Start
+button to begin.
+
+Enjoy."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="trans" type="Sprite" parent="."]
+texture = ExtResource( 9 )
+centered = false
+
+[node name="anim" type="AnimationPlayer" parent="."]
+autoplay = "in"
+anims/in = SubResource( 3 )
+anims/out = SubResource( 4 )
+[connection signal="button_up" from="buttons_m/start_B" to="." method="_on_start_B_button_up"]
+[connection signal="button_up" from="buttons_m/mute_B" to="." method="_on_mute_B_button_up"]
+[connection signal="button_up" from="buttons_m/rotate_B" to="." method="_on_rotate_B_button_up"]
+[connection signal="button_up" from="buttons_m/right_B" to="." method="_on_right_B_button_up"]
+[connection signal="button_up" from="buttons_m/left_B" to="." method="_on_left_B_button_up"]
+[connection signal="button_down" from="buttons_m/down_B" to="." method="_on_down_B_button_down"]
+[connection signal="button_up" from="buttons_m/down_B" to="." method="_on_down_B_button_up"]
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]

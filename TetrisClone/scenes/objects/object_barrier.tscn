@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/barrier.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+func set_pos(x,y):
+	global_position = Vector2((13*x)+33,(13*y)+112)
+	pass
+"
+
+[node name="object_barrier" type="Sprite"]
+texture = ExtResource( 1 )
+centered = false
+script = SubResource( 1 )
